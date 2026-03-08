@@ -1,1 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Women's Day</title>
 
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#1b0033;
+color:white;
+overflow:hidden;
+text-align:center;
+}
+
+.screen{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.hidden{
+display:none;
+}
+
+button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:30px;
+background:#ff4da6;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+.scene{
+position:relative;
+width:100%;
+height:100%;
+background:linear-gradient(#2d004d,#120022);
+}
+
+.item{
+position:absolute;
+cursor:pointer;
+font-size:22px;
+}
+
+#lamp{bottom:40px;left:40px;font-size:40px;}
+
+#frame{top:25%;left:20%;font-size:55px;}
+
+#envelope{top:30%;right:20%;font-size:55px;}
+
+#gift{bottom:25%;right:25%;font-size:55px;}
+
+.frameBox{
+background:#3d0066;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 25px gold;
+}
+
+.rapunzel{
+width:220px;
+border-radius:10px;
+}
+
+.princess{
+color:gold;
+font-size:24px;
+margin-top:10px;
+}
+
+.note{
+max-width:80%;
+line-height:1.7;
+font-size:17px;
+}
+
+.giftText{
+font-size:20px;
+max-width:85%;
+line-height:1.7;
+color:gold;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+
+<div id="screen1" class="screen">
+
+<h2>Happy Women's Day</h2>
+<p>You are really very special.</p>
+
+<button onclick="nextScreen('screen2')">Next</button>
+
+</div>
+
+<!-- SCREEN 2 -->
+
+<div id="screen2" class="screen hidden">
+
+<h2>Wait...</h2>
+<p>Are you ready for what's next?</p>
+
+<button onclick="nextScreen('screen3')">Yes</button>
+<button onclick="alert('No no no... you have to see it 😊')">No</button>
+
+</div>
+
+<!-- MAIN SCENE -->
+
+<div id="screen3" class="scene hidden">
+
+<div id="lamp" class="item">🪔</div>
+
+<div id="frame" class="item" onclick="openFrame()">🖼</div>
+
+<div id="envelope" class="item" onclick="openEnvelope()">✉</div>
+
+<div id="gift" class="item" onclick="openGift()">🎁</div>
+
+</div>
+
+<!-- FRAME SCREEN -->
+
+<div id="frameScreen" class="screen hidden">
+
+<div class="frameBox">
+
+<img src="rapunzel.png" class="rapunzel">
+
+<div class="princess">Princess</div>
+
+</div>
+
+<button onclick="backScene()">End</button>
+
+</div>
+
+<!-- ENVELOPE SCREEN -->
+
+<div id="envelopeScreen" class="screen hidden">
+
+<div id="noteText" class="note"></div>
+
+<button onclick="backScene()">Next</button>
+
+</div>
+
+<!-- GIFT SCREEN -->
+
+<div id="giftScreen" class="screen hidden">
+
+<div id="giftMessage" class="giftText"></div>
+
+</div>
+
+<script>
+
+function nextScreen(id){
+
+document.querySelectorAll(".screen").forEach(s=>s.classList.add("hidden"))
+document.getElementById(id).classList.remove("hidden")
+
+}
+
+function backScene(){
+
+document.querySelectorAll(".screen").forEach(s=>s.classList.add("hidden"))
+document.getElementById("screen3").classList.remove("hidden")
+
+}
+
+function openFrame(){
+nextScreen("frameScreen")
+}
+
+function openEnvelope(){
+
+nextScreen("envelopeScreen")
+
+typeWriter(
+"Dear HETSI.\n\nHappy Women's Day to the one who makes every day brighter just by being herself. You are really so much kind, really so much, so much, much best and really you deserve all the things. You deserve all your dreams. Thank you for inspiring, caring and shining in your way in my life. You are really, really very, very, really very pretty. Your eyes, your smile, when your hair blows in air, really you look more pretty and in just eye contact with me, you look really very, very pretty and really you are just, just very pretty as the girl, prettiest girl and best in this world. May you always believe in yourself and never settle for anything less than you deserve and I am always with you. Thank you for, I know that there is things I can't, I can't thank you to be in my life by just saying thank you. So just a little note for you.",
+"noteText")
+
+}
+
+function openGift(){
+
+nextScreen("giftScreen")
+
+typeWriter(
+"Today is Women's Day so not just I appreciate you today, I appreciate you for every day, every moment, and every hour and everything you do, and from my side, it is my words that I will keep more respect, more care, and just trying that first your peace and your comfort are protected, and me every day I can bring smile on your face by my little and by my little and large moments, every effort, every moment I will, every moment, every hour, every day, just I will try in the way you can smile and just you can feel very special, and that your precious smile can appreciate, I mean that your precious smile, my smile, I will also find my happiness, and really, really my all, my all feelings for you would remain every day, every day just increase and increase and for, and not for just today, but every day I would be like here and here just the heart of a little boy for you.",
+"giftMessage")
+
+}
+
+function typeWriter(text,id){
+
+let i=0
+document.getElementById(id).innerHTML=""
+
+function typing(){
+
+if(i<text.length){
+
+document.getElementById(id).innerHTML+=text.charAt(i)
+
+i++
+
+setTimeout(typing,30)
+
+}
+
+}
+
+typing()
+
+}
+
+</script>
+
+</body>
+</html>
